@@ -2,7 +2,20 @@
 **/build/
 **/.gradle/
 **/out/
+gradle-wrapper.jar
 
 # Node / React
 frontend-react/node_modules/
 frontend-react/build/
+frontend-react/.env
+frontend-react/.DS_Store
+
+# IntelliJ IDEA
+*.iml
+*.iws
+.idea/
+*.ipr
+
+# Windows
+Thumbs.db
+desktop.ini
