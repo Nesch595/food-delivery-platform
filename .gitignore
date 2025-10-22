@@ -1,0 +1,8 @@
+# Gradle
+**/build/
+**/.gradle/
+**/out/
+
+# Node / React
+frontend-react/node_modules/
+frontend-react/build/
