@@ -19,16 +19,33 @@ repositories {
 dependencies {
     // This dependency is used by the application.
     implementation libs.guava
+    // 'junit-jupiter-api' is for writing tests.
+    testImplementation 'org.junit.jupiter:junit-jupiter-api'
+    // 'junit-jupiter-engine' is for running the tests on the JUnit Platform.
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    //Spring Boot Starter
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    //Open API
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui'
+    //Lombok
+    implementation 'org.projectlombok:lombok:1.18.42'
+    annotationProcessor 'org.projectlombok:lombok:1.18.42'
+    //Mapstruct
+    implementation 'org.mapstruct:mapstruct:1.6.3'
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.6.3'
+    //Kafka
+    implementation 'org.springframework.kafka:spring-kafka'
+    //Liquibase
+    implementation 'org.liquibase:liquibase-core'
+    //PostgreSQL driver
+    implementation 'org.postgresql:postgresql:42.7.8'
 }
 
-testing {
-    suites {
-        // Configure the built-in test suite
-        test {
-            // Use JUnit Jupiter test framework
-            useJUnitJupiter('5.12.1')
-        }
-    }
+test {
+    useJUnitPlatform()
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
