@@ -1,0 +1,51 @@
+services:
+  user-db:
+    image: postgres:18
+    container_name: user-service
+    env_file:
+      - .env
+    environment:
+      POSTGRES_USER: ${USER_POSTGRES_USER}
+      POSTGRES_PASSWORD: ${USER_POSTGRES_PASSWORD}
+      POSTGRES_DB: ${USER_POSTGRES_DB}
+    ports:
+      - "5433:5432"
+    volumes:
+      - user-db-data:/var/lib/postgresql/data/pgdata
+    restart: always
+
+  restaurant-db:
+    image: postgres:18
+    container_name: restaurant-service
+    env_file:
+      - .env
+    environment:
+      POSTGRES_USER: ${RESTAURANT_POSTGRES_USER}
+      POSTGRES_PASSWORD: ${RESTAURANT_POSTGRES_PASSWORD}
+      POSTGRES_DB: ${RESTAURANT_POSTGRES_DB}
+    ports:
+      - "5434:5432"
+    volumes:
+      - restaurant-db-data:/var/lib/postgresql/data/pgdata
+    restart: always
+
+  order-db:
+    image: postgres:18
+    container_name: order-service
+    env_file:
+      - .env
+    environment:
+      POSTGRES_USER: ${ORDER_POSTGRES_USER}
+      POSTGRES_PASSWORD: ${ORDER_POSTGRES_PASSWORD}
+      POSTGRES_DB: ${ORDER_POSTGRES_DB}
+    ports:
+      - "5435:5432"
+    volumes:
+      - order-db-data:/var/lib/postgresql/data/pgdata
+
+    restart: always
+
+volumes:
+  user-db-data:
+  restaurant-db-data:
+  order-db-data:

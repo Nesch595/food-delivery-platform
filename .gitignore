@@ -16,6 +16,8 @@ frontend-react/.DS_Store
 .idea/
 *.ipr
 
+.env
+
 # Windows
 Thumbs.db
 desktop.ini
