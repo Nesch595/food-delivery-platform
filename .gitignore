@@ -16,7 +16,12 @@ frontend-react/.DS_Store
 .idea/
 *.ipr
 
+# Environment
 .env
+
+# Liquibase
+liquibase.properties
+liquibase_libs/
 
 # Windows
 Thumbs.db
