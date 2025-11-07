@@ -13,6 +13,8 @@ services:
     volumes:
       - user-db-data:/var/lib/postgresql/data/pgdata
     restart: always
+    networks:
+      - app-network
 
   restaurant-db:
     image: postgres:18
@@ -28,6 +30,8 @@ services:
     volumes:
       - restaurant-db-data:/var/lib/postgresql/data/pgdata
     restart: always
+    networks:
+      - app-network
 
   order-db:
     image: postgres:18
@@ -42,10 +46,14 @@ services:
       - "5435:5432"
     volumes:
       - order-db-data:/var/lib/postgresql/data/pgdata
-
     restart: always
+    networks:
+      - app-network
 
 volumes:
   user-db-data:
   restaurant-db-data:
   order-db-data:
+networks:
+    app-network:
+        driver: bridge
