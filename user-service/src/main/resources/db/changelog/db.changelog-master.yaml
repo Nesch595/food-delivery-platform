@@ -1,0 +1,9 @@
+databaseChangeLog:
+  - include:
+      file: changes/001-create-address.sql
+  - include:
+      file: changes/002-create-role.sql
+  - include:
+      file: changes/003-create-user.sql
+  - include:
+      file: changes/003-create-user-role.sql

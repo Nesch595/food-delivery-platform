@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - include:
+      file: changes/001-create-order.sql
+  - include:
+      file: changes/002-create-order-item.sql
+  - include:
+      file: changes/003-create-payment.sql

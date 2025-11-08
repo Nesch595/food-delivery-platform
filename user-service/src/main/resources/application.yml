@@ -6,9 +6,6 @@ spring:
     change-log: classpath:db/changelog/db.changelog-master.yaml
     enabled: true
 
-server:
-  port: 0
-
 logging:
   level:
     org.springframework: INFO

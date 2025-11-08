@@ -4,10 +4,7 @@ spring:
 
   liquibase:
     change-log: classpath:db/changelog/db.changelog-master.yaml
-    enabled: true
-
-server:
-  port: 0
+    enabled: false
 
 logging:
   level:

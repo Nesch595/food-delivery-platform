@@ -37,7 +37,7 @@ dependencies {
     //PostgreSQL driver
     implementation 'org.postgresql:postgresql:42.7.8'
 
-    implementation 'org.apache.commons:commons-lang3:3.17.1'
+    implementation 'org.apache.commons:commons-lang3:3.17.0'
 }
 
 test {
@@ -48,4 +48,16 @@ java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(22)
     }
+}
+
+springBoot {
+    mainClass = 'org.example.OrderMainApp'
+}
+
+bootRun {
+    mainClass = 'org.example.OrderMainApp'
+}
+
+bootJar {
+    mainClass = 'org.example.OrderMainApp'
 }
