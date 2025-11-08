@@ -3,4 +3,8 @@
 
 # Ignore Gradle build output directory
 build
+
 liquibase.properties
+
+src/main/resources/application.yml
+src/main/resources/application-dev.yml

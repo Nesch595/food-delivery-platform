@@ -1,5 +1,5 @@
 databaseChangeLog:
   - include:
-      file: changes/001-create-restaurant.sql
+      file: db/changelog/changes/001-create-restaurant.sql
   - include:
-      file: changes/002-create-dish.sql
+      file: db/changelog/changes/002-create-dish.sql
