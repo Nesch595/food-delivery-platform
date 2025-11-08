@@ -2,7 +2,11 @@
 **/build/
 **/.gradle/
 **/out/
+.gradle
 gradle-wrapper.jar
+settings.gradle
+gradlew
+gradlew.bat
 
 # Node / React
 frontend-react/node_modules/
