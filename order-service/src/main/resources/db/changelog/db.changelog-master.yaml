@@ -5,3 +5,7 @@ databaseChangeLog:
       file: classpath:db/changelog/changes/002-create-order-item.sql
   - include:
       file: classpath:db/changelog/changes/003-create-payment.sql
+  - include:
+      file: classpath:db/changelog/changes/004-change-type-order-item-price.sql
+  - include:
+      file: classpath:db/changelog/changes/005-change-type-order-total-price.sql
