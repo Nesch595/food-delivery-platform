@@ -1,11 +1,11 @@
 databaseChangeLog:
   - include:
-      file: classpath:db/changelog/changes/001-create-order.sql
+      file: src/main/resources/db/changelog/changes/001-create-order.sql
   - include:
-      file: classpath:db/changelog/changes/002-create-order-item.sql
+      file: src/main/resources/db/changelog/changes/002-create-order-item.sql
   - include:
-      file: classpath:db/changelog/changes/003-create-payment.sql
+      file: src/main/resources/db/changelog/changes/003-create-payment.sql
   - include:
-      file: classpath:db/changelog/changes/004-change-type-order-item-price.sql
+      file: src/main/resources/db/changelog/changes/004-change-type-order-item-price.sql
   - include:
-      file: classpath:db/changelog/changes/005-change-type-order-total-price.sql
+      file: src/main/resources/db/changelog/changes/005-change-type-order-total-price.sql
