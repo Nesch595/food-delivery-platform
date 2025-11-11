@@ -3,3 +3,5 @@ databaseChangeLog:
       file: src/main/resources/db/changelog/changes/001-create-restaurant.sql
   - include:
       file: src/main/resources/db/changelog/changes/002-create-dish.sql
+  - include:
+      file: src/main/resources/db/changelog/changes/003-change-dish-price.sql
