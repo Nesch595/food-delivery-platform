@@ -22,7 +22,7 @@ public class Dish {
     private String description;
 
     @Column(name = "price", nullable = false)
-    private int price;
+    private double price = 0.00;
 
     @Column(name = "image_url", nullable = false)
     private String imageUrl;
