@@ -7,6 +7,7 @@ import org.example.exception.UserNotFoundException;
 import org.example.mapper.UserMapper;
 import org.example.repository.RoleRepository;
 import org.example.repository.UserRepository;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,6 +18,7 @@ import java.util.Set;
 @RequiredArgsConstructor
 @Transactional
 public class UserService {
+
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
@@ -29,10 +31,10 @@ public class UserService {
 
         User user = userMapper.toEntity(userDto);
         user.setPasswordHash(passwordEncoder.encode(rawPassword));
-        user.setRoles(
-                Set.of(roleRepository.findByName("Customer")
-                        .orElseThrow(() -> new RuntimeException("Default role not found")))
-        );
+        user.setRoles(Set.of(
+                roleRepository.findByName("USER")
+                        .orElseThrow(() -> new RuntimeException("Default role 'USER' not found"))
+        ));
 
         return userMapper.toDto(userRepository.save(user));
     }
@@ -60,26 +62,28 @@ public class UserService {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new UserNotFoundException(id));
 
-        User updatedUser = userMapper.toEntity(updated);
-        if (updated.fullName() != null && !updated.fullName().equals(user.getFullName())) {
-            user.setFullName(updated.fullName());
-        }
-        if (updated.email() != null && !updated.email().equals(user.getEmail())) {
-            user.setEmail(updated.email());
-        }
-        if (updated.addresses() != null && !updated.addresses().equals(user.getAddresses())) {
-            user.setAddresses(updatedUser.getAddresses());
-        }
-        if (updatedUser.getPasswordHash() != null && !updatedUser.getPasswordHash().equals(user.getPasswordHash())) {
-            user.setPasswordHash(passwordEncoder.encode(updatedUser.getPasswordHash()));
-        }
-
-        if (updated.roles() != null && !updated.roles().equals(user.getRoles())) {
-            user.setRoles(updatedUser.getRoles());
-        }
+        if (updated.fullName() != null) user.setFullName(updated.fullName());
+        if (updated.email() != null) user.setEmail(updated.email());
+        if (updated.addresses() != null) user.setAddresses(userMapper.toEntity(updated).getAddresses());
+        if (updated.roles() != null) user.setRoles(userMapper.toEntity(updated).getRoles());
 
         User saved = userRepository.save(user);
         return userMapper.toDto(saved);
     }
 
+    public User save(User user) {
+        return userRepository.save(user);
+    }
+
+    public User create(User user) {
+        if (userRepository.existsByEmail(user.getEmail())) {
+            throw new RuntimeException("User with this email exists");
+        }
+        return save(user);
+    }
+
+    public User getByUsername(String email) {
+        return userRepository.findByEmail(email)
+                .orElseThrow(() -> new UsernameNotFoundException("User with such email not found"));
+    }
 }
