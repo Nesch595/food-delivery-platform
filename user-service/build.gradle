@@ -39,6 +39,10 @@ dependencies {
     implementation 'org.postgresql:postgresql:42.7.8'
 
     implementation 'org.apache.commons:commons-lang3:3.17.0'
+    //JWT
+    implementation 'io.jsonwebtoken:jjwt-api:0.13.0'
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.13.0'
+    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.13.0'
 }
 
 test {
