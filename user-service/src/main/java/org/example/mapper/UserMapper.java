@@ -3,6 +3,7 @@ package org.example.mapper;
 import org.example.dto.UserDto;
 import org.example.entity.User;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
 import org.mapstruct.factory.Mappers;
 
@@ -10,6 +11,7 @@ import org.mapstruct.factory.Mappers;
 public interface UserMapper {
     UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
 
+    @Mapping(target = "passwordHash", ignore = true)
     User toEntity(UserDto userDto);
     UserDto toDto(User user);
 }

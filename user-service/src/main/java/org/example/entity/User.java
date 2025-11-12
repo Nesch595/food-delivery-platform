@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name = "user")
+@Table(name = "\"user\"")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -60,7 +60,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return this.fullName;
+        return this.email;
     }
 
     @Override

@@ -1,14 +1,20 @@
 package org.example.security;
 
-import lombok.AllArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
-@AllArgsConstructor
+@NoArgsConstructor
 public class JwtResponse {
 
-    private final String type = "Bearer";
+    private String type = "Bearer";
     private String accessToken;
     private String refreshToken;
 
+    public JwtResponse(@JsonProperty("accessToken") String accessToken,
+                       @JsonProperty("refreshToken") String refreshToken) {
+        this.accessToken = accessToken;
+        this.refreshToken = refreshToken;
+    }
 }

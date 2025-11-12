@@ -64,5 +64,12 @@ bootRun {
 }
 
 bootJar {
-    mainClass = 'org.example.UserainApp'
+    mainClass = 'org.example.UserMainApp'
+}
+
+tasks.register('generateKeys', JavaExec) {
+    group = "jwt"
+    description = "Generate JWT keys"
+    mainClass.set("org.example.GenerateKeys")
+    classpath = sourceSets.main.runtimeClasspath
 }

@@ -11,20 +11,20 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@RequestMapping("/users/me")
+@RequestMapping("/users")
 @RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
     private final AuthService authService;
 
-    @GetMapping("users/me")
+    @GetMapping("/me")
     public ResponseEntity<UserDto> getCurrentUser() {
         JwtAuthentication authInfo = authService.getAuthInfo();
         UserDto userDto = userService.getProfile(Long.valueOf(authInfo.getUsername()));
         return ResponseEntity.ok(userDto);
     }
 
-    @PostMapping("/users/me")
+    @PostMapping("/me")
     public ResponseEntity<UserDto> updateProfile(@RequestBody UserDto userDto) {
         JwtAuthentication authInfo = authService.getAuthInfo();
         UserDto updated = userService.updateProfile(Long.valueOf(authInfo.getUsername()), userDto);

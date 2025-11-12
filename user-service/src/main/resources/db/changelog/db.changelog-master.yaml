@@ -1,9 +1,11 @@
 databaseChangeLog:
   - include:
-      file: src/main/resources/db/changelog/changes/001-create-user.sql
+      file: db/changelog/changes/001-create-user.sql
   - include:
-      file: src/main/resources/db/changelog/changes/002-create-role.sql
+      file: db/changelog/changes/002-create-role.sql
   - include:
-      file: src/main/resources/db/changelog/changes/003-create-user-role.sql
+      file: db/changelog/changes/003-create-user-role.sql
   - include:
-      file: src/main/resources/db/changelog/changes/004-create-address.sql
+      file: db/changelog/changes/004-create-address.sql
+  - include:
+      file: db/changelog/changes/005-insert-test-case.sql

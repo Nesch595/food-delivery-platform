@@ -27,22 +27,37 @@ public class JwtFilter extends GenericFilterBean {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain fc)
             throws IOException, ServletException {
-        final String token = getTokenFromRequest((HttpServletRequest) request);
+
+        HttpServletRequest httpRequest = (HttpServletRequest) request;
+
+        String path = httpRequest.getServletPath();
+        log.info("Incoming request: {} {}", httpRequest.getMethod(), path);
+
+        if (path.startsWith("/api/auth/") || httpRequest.getMethod().equalsIgnoreCase("OPTIONS")) {
+            log.info("Skipping JWT filter for auth or OPTIONS request: {}", path);
+            fc.doFilter(request, response);
+            return;
+        }
+
+        String token = getTokenFromRequest(httpRequest);
         if (token != null && jwtProvider.validateAccessToken(token)) {
-            final Claims claims = jwtProvider.getAccessClaims(token);
-            final JwtAuthentication jwtInfoToken = JwtUtils.generate(claims);
+            Claims claims = jwtProvider.getAccessClaims(token);
+            JwtAuthentication jwtInfoToken = JwtUtils.generate(claims);
             jwtInfoToken.setAuthenticated(true);
             SecurityContextHolder.getContext().setAuthentication(jwtInfoToken);
+            log.info("JWT valid. Authentication set for user: {}", claims.getSubject());
+        } else {
+            log.warn("No JWT token or invalid token for path: {}", path);
         }
+
         fc.doFilter(request, response);
     }
 
     private String getTokenFromRequest(HttpServletRequest request) {
-        final String bearer = request.getHeader(AUTHORIZATION);
+        String bearer = request.getHeader(AUTHORIZATION);
         if (StringUtils.hasText(bearer) && bearer.startsWith("Bearer ")) {
             return bearer.substring(7);
         }
         return null;
     }
-
 }

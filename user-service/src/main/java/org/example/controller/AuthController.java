@@ -9,8 +9,9 @@ import org.example.service.AuthService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("api/auth")
+@RequestMapping("/api/auth")
 @RequiredArgsConstructor
 public class AuthController {
 
@@ -23,8 +24,8 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<JwtResponse> register(@RequestBody JwtRequest authRequest) throws AuthException {
-        final JwtResponse token = authService.register(authRequest);
+    public ResponseEntity<JwtResponse> register(@RequestBody JwtRequest request) throws AuthException {
+        JwtResponse token = authService.register(request).getBody();
         return ResponseEntity.ok(token);
     }
 
